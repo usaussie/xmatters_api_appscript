@@ -26,6 +26,5 @@ Optional:
 ### Author ###
 
 * Nick Young
-* nickyoung@uncg.edu
 * [@techupover](https://twitter.com/techupover)
 * [Medium](http://usaussie.medium.com)
