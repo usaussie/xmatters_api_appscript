@@ -10,6 +10,7 @@ var GOOGLE_SHEET_RESULTS_TAB_NAME_PEOPLE = "people";
 var GOOGLE_SHEET_RESULTS_TAB_NAME_GROUPS = "groups";
 var GOOGLE_SHEET_RESULTS_TAB_NAME_GROUP_ROSTERS = "group_rosters";
 
+
 /*
 *
 * DO NOT CHANGE ANYTHING BELOW THIS LINE
@@ -103,12 +104,14 @@ function getGroupRosters() {
       ];
       
       //console.log(newRow);
+      //console.log(xmJsonData.targetName);
 
       group_data.push(newRow);
 
   })
 
   var normalized_data = [];
+  Logger.log('Retrieving rosters for ' + group_data.length + ' groups.');
   
   // now go get group rosters for each
   for (var i = 0; i < group_data.length; i++) {
@@ -118,6 +121,7 @@ function getGroupRosters() {
     var roster_data = do_paginated_api_call(roster_api_url, this_api.method);
     
     //console.log(roster_data);
+    //Logger.log('Retrieving roster for Group ID: ' + group_data[i]);
     
     Object.entries(roster_data).forEach(([key, xmJsonData]) => {
         
@@ -138,8 +142,6 @@ function getGroupRosters() {
         normalized_data.push(newRow);
 
     })
-
-    i++;
 
   }
 
@@ -305,8 +307,8 @@ function do_paginated_api_call(endpoint, method) {
 
     i++;
 
-  //} while (lastResult.links.next !== undefined);
-  } while (i < 2);
+  } while (lastResult.links.next !== undefined);
+  //} while (i < 2);
   
   //Logger.log(return_data);
   return return_data;
@@ -335,4 +337,6 @@ function xm_api_groups()
   return endpoint_info;
   
 }
+
+
 
